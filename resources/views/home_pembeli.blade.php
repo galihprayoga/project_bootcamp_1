@@ -46,7 +46,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $row->nama_produk }}</h5>
                         <p class="card-text">Rp 250.000</p>
-                        <a href="#" class="btn btn-primary">Detail</a>
+                        <a href="{{ url('/detail_produk/'.$row->id) }}" class="btn btn-primary">Detail</a>
                     </div>
                 </div>
             </div>

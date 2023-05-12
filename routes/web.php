@@ -35,5 +35,6 @@ Route::post('/simpan_input_produk', [InputProdukController::class, 'simpan_input
 Route::get('/report_produk', [InputProdukController::class, 'report_produk'])->name('report_produk');
 
 Route::get('/daftar_produk', [InputProdukController::class, 'daftar_produk'])->name('daftar_produk');
+Route::get('/detail_produk/{id}', [InputProdukController::class, 'detail_produk'])->name('detail_produk');
 
 Route::get('/home_pembeli', [App\Http\Controllers\Pembeli::class, 'index'])->name('home_pembeli');
