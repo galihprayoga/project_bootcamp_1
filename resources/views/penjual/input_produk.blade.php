@@ -6,7 +6,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Form Input Produk</div>
+                <div class="card-header">Input Produk</div>
 
 
                 <div class="card-body">
@@ -28,8 +28,7 @@
 
 
                             <div class="col-md-6">
-                                <input id="nama_produk" type="text" class="form-control" name="nama_produk" required
-                                    placeholder="Contoh: Sepatu">
+                                <input id="nama_produk" type="text" class="form-control" name="nama_produk" required>
                             </div>
                         </div>
 
@@ -42,6 +41,26 @@
                                 <input id="gambar_produk" type="file" class="form-control" name="gambar_produk" required>
                             </div>
                         </div>
+                        
+                        
+                        <div class="row mb-2">
+                            <label for="gambar_produk_2" class="col-md-4 col-form-label text-md-end">Gambar Produk 2</label>
+
+
+                            <div class="col-md-6">
+                                <input id="gambar_produk_2" type="file" class="form-control" name="gambar_produk_2" required>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="row mb-2">
+                            <label for="gambar_produk_3" class="col-md-4 col-form-label text-md-end">Gambar Produk 3</label>
+
+
+                            <div class="col-md-6">
+                                <input id="gambar_produk_3" type="file" class="form-control" name="gambar_produk_3" required>
+                            </div>
+                        </div>
 
 
                         <div class="row mb-2">
@@ -49,8 +68,17 @@
 
 
                             <div class="col-md-6">
-                                <input id="stok_produk" type="number" class="form-control" name="stok_produk" required
-                                    placeholder="Contoh: 20">
+                                <input id="stok_produk" type="number" class="form-control" name="stok_produk" required>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="row mb-2">
+                            <label for="harga" class="col-md-4 col-form-label text-md-end">Harga</label>
+
+
+                            <div class="col-md-6">
+                                <input id="harga" type="number" class="form-control" name="harga" required>
                             </div>
                         </div>
 

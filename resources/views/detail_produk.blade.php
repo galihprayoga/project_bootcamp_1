@@ -11,13 +11,17 @@
                             <div class="carousel-indicators">
                                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                                 <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                                <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 2"></button>
                             </div>
                             <div class="carousel-inner">                                
                                 <div class="carousel-item active">
                                     <img src="{{ asset('gambar/gambar_produk/'.$row->gambar_produk) }}" class="d-block w-100" alt="...">
                                 </div>
                                 <div class="carousel-item">
-                                    <img src="{{ asset('gambar/gambar_produk/'.$row->gambar_produk) }}" class="d-block w-100" alt="...">
+                                    <img src="{{ asset('gambar/gambar_produk/'.$row->gambar_produk_2) }}" class="d-block w-100" alt="...">
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="{{ asset('gambar/gambar_produk/'.$row->gambar_produk_3) }}" class="d-block w-100" alt="...">
                                 </div>
                             </div>
                             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -40,7 +44,7 @@
                     <h5 class="text-uppercase mb-3 text-body">{{ $row->deskripsi_produk }}</h5>
                     </p>
                     <p>
-                    <h2><span class="text-primary">Rp 250.000</span></h2>
+                    <h2><span class="text-primary">{{ $row->harga }}</span></h2>
                     <a href="#" class="btn btn-primary">Pesan</a>
                     </p>
                 </div>

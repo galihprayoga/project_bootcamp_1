@@ -32,9 +32,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/input_produk', [InputProdukController::class, 'input_produk'])->name('input_produk');
 Route::post('/simpan_input_produk', [InputProdukController::class, 'simpan_input_produk'])->name('simpan_input_produk');
 
-Route::get('/report_produk', [InputProdukController::class, 'report_produk'])->name('report_produk');
-
 Route::get('/daftar_produk', [InputProdukController::class, 'daftar_produk'])->name('daftar_produk');
 Route::get('/detail_produk/{id}', [InputProdukController::class, 'detail_produk'])->name('detail_produk');
+
+Route::get('/report_produk', [InputProdukController::class, 'report_produk'])->name('report_produk');
+
+Route::get('/edit_produk/{id}', [InputProdukController::class, 'edit_produk'])->name('edit_produk');
+Route::post('/simpan_edit_produk/{id}', [InputProdukController::class, 'simpan_edit_produk'])->name('simpan_edit_produk');
+
+Route::get('/hapus_produk/{id}', [InputProdukController::class, 'hapus_produk'])->name('hapus_produk');
 
 Route::get('/home_pembeli', [App\Http\Controllers\Pembeli::class, 'index'])->name('home_pembeli');

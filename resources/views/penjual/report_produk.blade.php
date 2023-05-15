@@ -4,7 +4,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Report Produk</div>
 
@@ -30,6 +30,7 @@
                                     <th>Nama Produk</th>
                                     <th>Stok</th>
                                     <th>Deskripsi</th>
+                                    <th>Harga</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -42,10 +43,17 @@
                                         <img class="img-fluid rounded shadow-sm"
                                             src="{{ asset('gambar/gambar_produk/'.$row->gambar_produk) }}"
                                             style="width: 90px; height:90px" alt="Gambar Produk">
+                                        <img class="img-fluid rounded shadow-sm"
+                                            src="{{ asset('gambar/gambar_produk/'.$row->gambar_produk_2) }}"
+                                            style="width: 90px; height:90px" alt="Gambar Produk">
+                                        <img class="img-fluid rounded shadow-sm"
+                                            src="{{ asset('gambar/gambar_produk/'.$row->gambar_produk_3) }}"
+                                            style="width: 90px; height:90px" alt="Gambar Produk">
                                     </td>
                                     <td>{{ $row->nama_produk }}</td>
                                     <td>{{ $row->stok }}</td>
                                     <td>{{ $row->deskripsi_produk }}</td>
+                                    <td>{{ $row->harga }}</td>
                                     <td align="center">
                                         <a href="{{ url('/edit_produk/'.$row->id) }}" class="btn btn-sm btn-primary">Edit</a>
                                         <a href="{{ url('/hapus_produk/'.$row->id) }}" class="btn btn-sm btn-danger">Hapus</a>
