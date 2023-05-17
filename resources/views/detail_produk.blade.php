@@ -45,7 +45,7 @@
                     </p>
                     <p>
                     <h2><span class="text-primary">{{ $row->harga }}</span></h2>
-                    <a href="#" class="btn btn-primary">Pesan</a>
+                    <a href="{{ url('/pemesanan/'.$row->id) }}" class="btn btn-primary">Pesan</a>
                     </p>
                 </div>
             </div>
