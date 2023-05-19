@@ -244,7 +244,7 @@ class InputProdukController extends Controller
             ];
 
 
-            return view('home_pembeli', $data);
+            return view('daftar_produk', $data);
         } catch (Exception $e) {
             return $e;
         }

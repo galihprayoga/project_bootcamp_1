@@ -43,5 +43,3 @@ Route::post('/simpan_edit_produk/{id}', [InputProdukController::class, 'simpan_e
 Route::get('/hapus_produk/{id}', [InputProdukController::class, 'hapus_produk'])->name('hapus_produk');
 
 Route::get('/pemesanan/{id}', [InputProdukController::class, 'pemesanan'])->name('pemesanan');
-
-Route::get('/home_pembeli', [App\Http\Controllers\Pembeli::class, 'index'])->name('home_pembeli');

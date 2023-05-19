@@ -45,7 +45,7 @@
                     <img src="{{ asset('gambar/gambar_produk/'.$row->gambar_produk) }}" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title">{{ $row->nama_produk }}</h5>
-                        <p class="card-text">{{ $row->harga }}</p>
+                        <p class="card-text">{{ format_rupiah($row->harga) }}</p>
                         <a href="{{ url('/detail_produk/'.$row->id) }}" class="btn btn-primary">Detail</a>
                     </div>
                 </div>
