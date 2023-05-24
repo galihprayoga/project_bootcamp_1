@@ -21,6 +21,8 @@
                     <form method="POST" action="{{ url('/pesan_produk/'.$id) }}" enctype="multipart/form-data">
                         @csrf
                         @foreach($data_produk as $row)
+                        <input type="hidden" name="id" id="id" value="{{ $row->id }}">
+                        <input type="hidden" name="id_user" id="id_user" value="{{ Auth::user()->id }}">
                         <div class="row mb-3">
                             <label for="nama_produk" class="col-md-4 col-form-label text-md-end">Nama Produk</label>
 
@@ -76,11 +78,11 @@
                         
                         
                         <div class="row mb-3">
-                            <label for="kontak_pemesan" class="col-md-4 col-form-label text-md-end">Nomor Telepon</label>
+                            <label for="no_telp_pemesan" class="col-md-4 col-form-label text-md-end">Nomor Telepon</label>
 
 
                             <div class="col-md-6">
-                                <input id="kontak_pemesan" class="form-control" name="kontak_pemesan"></input>
+                                <input id="no_telp_pemesan" class="form-control" name="no_telp_pemesan"></input>
                             </div>
                         </div>
 

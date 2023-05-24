@@ -18,28 +18,32 @@ use App\Http\Controllers\InputProdukController;
 */
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 
 Auth::routes();
 
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-Route::get('/input_produk', [InputProdukController::class, 'input_produk'])->name('input_produk');
-Route::post('/simpan_input_produk', [InputProdukController::class, 'simpan_input_produk'])->name('simpan_input_produk');
-
-Route::get('/daftar_produk', [InputProdukController::class, 'daftar_produk'])->name('daftar_produk');
+Route::get('/', [InputProdukController::class, 'daftar_produk'])->name('daftar_produk');
 Route::get('/detail_produk/{id}', [InputProdukController::class, 'detail_produk'])->name('detail_produk');
 
-Route::get('/report_produk', [InputProdukController::class, 'report_produk'])->name('report_produk');
 
-Route::get('/edit_produk/{id}', [InputProdukController::class, 'edit_produk'])->name('edit_produk');
-Route::post('/simpan_edit_produk/{id}', [InputProdukController::class, 'simpan_edit_produk'])->name('simpan_edit_produk');
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/input_produk', [InputProdukController::class, 'input_produk'])->name('input_produk');
+    Route::post('/simpan_input_produk', [InputProdukController::class, 'simpan_input_produk'])->name('simpan_input_produk');
 
-Route::get('/hapus_produk/{id}', [InputProdukController::class, 'hapus_produk'])->name('hapus_produk');
 
-Route::get('/pemesanan/{id}', [InputProdukController::class, 'pemesanan'])->name('pemesanan');
+    Route::get('/report_produk', [InputProdukController::class, 'report_produk'])->name('report_produk');
+
+    Route::get('/edit_produk/{id}', [InputProdukController::class, 'edit_produk'])->name('edit_produk');
+    Route::post('/simpan_edit_produk/{id}', [InputProdukController::class, 'simpan_edit_produk'])->name('simpan_edit_produk');
+
+    Route::get('/hapus_produk/{id}', [InputProdukController::class, 'hapus_produk'])->name('hapus_produk');
+
+    Route::get('/pesanan', [InputProdukController::class, 'pesanan'])->name('pesanan');
+
+    Route::get('/pemesanan/{id}', [InputProdukController::class, 'pemesanan'])->name('pemesanan');
+
+    Route::post('/pesan_produk/{id}', [InputProdukController::class, 'pesan_produk'])->name('pesan_produk');
+});

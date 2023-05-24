@@ -1,4 +1,4 @@
-@extends('layouts.header_pembeli')
+@extends('layouts.app')
 
 @section('content')
 <div class="container">

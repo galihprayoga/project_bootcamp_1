@@ -26,11 +26,13 @@
                             <thead>
                                 <tr class="bg-primary text-white" align="center">
                                     <th>No</th>
-                                    <th>Gambar Produk</th>
+                                    <th>Nama Pemesan</th>
                                     <th>Nama Produk</th>
-                                    <th>Stok</th>
-                                    <th>Deskripsi</th>
-                                    <th>Harga</th>
+                                    <th>Nomor Telepon</th>
+                                    <th>Jumlah</th>
+                                    <th>Total Harga</th>
+                                    <th>Bukti Pembayaran</th>
+                                    <th>Alamat</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -39,24 +41,19 @@
                                 @foreach($data_produk as $row)
                                 <tr>
                                     <td>{{ $no++ }}</td>
-                                    <td align="center">
-                                        <img class="img-fluid rounded shadow-sm"
-                                            src="{{ asset('gambar/gambar_produk/'.$row->gambar_produk) }}"
-                                            style="width: 90px; height:90px" alt="Gambar Produk">
-                                        <img class="img-fluid rounded shadow-sm"
-                                            src="{{ asset('gambar/gambar_produk/'.$row->gambar_produk_2) }}"
-                                            style="width: 90px; height:90px" alt="Gambar Produk">
-                                        <img class="img-fluid rounded shadow-sm"
-                                            src="{{ asset('gambar/gambar_produk/'.$row->gambar_produk_3) }}"
-                                            style="width: 90px; height:90px" alt="Gambar Produk">
-                                    </td>
+                                    <td>{{ $row->name }}</td>
                                     <td>{{ $row->nama_produk }}</td>
-                                    <td>{{ $row->stok }}</td>
-                                    <td>{{ $row->deskripsi_produk }}</td>
-                                    <td>{{ $row->harga }}</td>
+                                    <td>{{ $row->no_telp_pemesan }}</td>
+                                    <td>{{ $row->jumlah }}</td>
+                                    <td>{{ $row->total_harga }}</td>
+                                    <td align="center">                                        
+                                        <img class="img-fluid rounded shadow-sm"
+                                        src="{{ asset('gambar/bukti_pembayaran/'.$row->bukti_pembayaran) }}"
+                                        style="width: 90px; height:90px" alt="Bukti Pembayaran">
+                                    </td>
+                                    <td>{{ $row->alamat }}</td>
                                     <td align="center">
-                                        <a href="{{ url('/edit_produk/'.$row->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                        <a href="{{ url('/hapus_produk/'.$row->id) }}" class="btn btn-sm btn-danger">Hapus</a>
+                                        <a href="#" class="btn btn-sm btn-primary">Cetak Alamat</a>                                        
                                     </td>
                                 </tr>
                                 @endforeach

@@ -310,4 +310,71 @@ class InputProdukController extends Controller
             return $e;
         }
     }
+
+    public function pesan_produk(Request $request, $id)
+    {
+        try {
+            $bukti_pembayaran = $request->file('bukti_pembayaran');
+            
+            //ambil ekstensi gambar
+            $ext_bukti_pembayaran = $bukti_pembayaran->getClientOriginalExtension();
+            //ambil nama gambar
+            $nama_bukti_pembayaran = $bukti_pembayaran->getClientOriginalName();
+            //pindahkan gambar ke folder public/gambar/bukti_pembayaran
+            $bukti_pembayaran->move('gambar/bukti_pembayaran/', $nama_bukti_pembayaran);
+            
+
+            $data = [
+                'id_produk' => $request->id,
+                'id_user' => $request->id_user,
+                'bukti_pembayaran' => $nama_bukti_pembayaran,                
+                'no_telp_pemesan' => $request->no_telp_pemesan,
+                'jumlah' => $request->jumlah,
+                'alamat' => $request->alamat,
+            ];
+
+
+            //Start Transaction
+            DB::beginTransaction();
+            $insert_data = DB::table('pesanan')->insert($data);
+
+
+            //Commit Transaction
+            DB::commit();
+
+
+            return redirect()->back()->with('message', 'Produk berhasil dipesan');
+        } catch (Exception $e) {
+            //rollback Transaction
+            DB::rollback();
+            return redirect()->back()->with('error', 'Pemesanan gagal, silahkan coba lagi!');
+        }
+    }
+
+    public function pesanan()
+    {
+        try {
+            $data_produk = DB::table('view_users_produk_pesanan')
+                    ->select(
+                        'view_users_produk_pesanan.name',
+                        'view_users_produk_pesanan.nama_produk',
+                        'view_users_produk_pesanan.no_telp_pemesan',
+                        'view_users_produk_pesanan.jumlah',
+                        'view_users_produk_pesanan.total_harga',
+                        'view_users_produk_pesanan.bukti_pembayaran',
+                        'view_users_produk_pesanan.alamat'                        
+                    )
+                    ->get();
+
+
+            $data = [
+                'data_produk' => $data_produk
+            ];
+
+
+            return view('penjual.pesanan', $data);
+        } catch (Exception $e) {
+            return $e;
+        }
+    }
 }
