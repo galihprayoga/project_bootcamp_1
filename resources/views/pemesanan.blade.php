@@ -50,8 +50,7 @@
 
 
                             <div class="col-md-6">
-                                <input id="jumlah" type="number" class="form-control" name="jumlah"
-                                    required autocomplete="jumlah" autofocus>
+                                <input id="jumlah" type="number" class="form-control" name="jumlah" value="1">
                             </div>
                         </div>
                         
@@ -61,8 +60,17 @@
 
 
                             <div class="col-md-6">
-                                <input id="harga" type="number" class="form-control" name="harga" value="{{ $row->harga }}"
-                                    required autocomplete="harga" autofocus>
+                                <input id="harga" type="number" class="form-control" name="harga" value="{{ format_rupiah($row->harga) }}">
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="row mb-3">
+                            <label for="sub_total" class="col-md-4 col-form-label text-md-end">Sub Total</label>
+
+
+                            <div class="col-md-6">
+                                <input id="sub_total" type="number" class="form-control" name="sub_total">
                             </div>
                         </div>
 
@@ -109,4 +117,29 @@
         </div>
     </div>
 </div>
+
+<script>
+    function number_with_dot(x) {
+		var parts = x.toString().split('.');
+		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+		return parts.join('.');
+	}
+
+	function remove_dot(text) {
+		text = text ?? '';
+		return text.toString().replace(/\./g, '');
+	}
+
+    $(document).ready(function () {  
+        $('#jumlah').on('keyup change', function() {
+            var harga = remove_dot($('#harga').val());
+            var jumlah = $("#jumlah").val();
+
+            var sub_total = parseInt(harga) * parseInt(jumlah);
+            $("#sub_total").val(number_with_dot(sub_total));
+      })
+    });
+      
+  </script>
+
 @endsection
