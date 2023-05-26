@@ -50,7 +50,7 @@
 
 
                             <div class="col-md-6">
-                                <input id="jumlah" type="number" class="form-control" name="jumlah" value="1">
+                                <input id="jumlah" type="number" class="form-control" name="jumlah">
                             </div>
                         </div>
                         
@@ -122,7 +122,7 @@
     function number_with_dot(x) {
 		var parts = x.toString().split('.');
 		parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, '.');
-		return parts.join('.');
+		return parts.join('.');        
 	}
 
 	function remove_dot(text) {

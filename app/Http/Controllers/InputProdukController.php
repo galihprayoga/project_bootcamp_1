@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 
 class InputProdukController extends Controller
@@ -330,6 +331,7 @@ class InputProdukController extends Controller
                 'bukti_pembayaran' => $nama_bukti_pembayaran,                
                 'no_telp_pemesan' => $request->no_telp_pemesan,
                 'jumlah' => $request->jumlah,
+                'sub_total' => Str::replace('.','',$request->sub_total),
                 'alamat' => $request->alamat,
             ];
 
