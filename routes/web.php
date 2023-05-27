@@ -3,7 +3,10 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\InputProdukController;
+use App\Http\Controllers\Produk_pembeli_controller;
+use App\Http\Controllers\Produk_penjual_controller;
+use App\Http\Controllers\Pesanan_penjual_controller;
+use App\Http\Controllers\Pemesanan_pembeli_controller;
 
 
 /*
@@ -25,27 +28,27 @@ use App\Http\Controllers\InputProdukController;
 
 Auth::routes();
 
-Route::get('/', [InputProdukController::class, 'daftar_produk'])->name('daftar_produk');
-Route::get('/detail_produk/{id}', [InputProdukController::class, 'detail_produk'])->name('detail_produk');
+Route::get('/', [Produk_pembeli_controller::class, 'daftar_produk'])->name('daftar_produk');
+Route::get('/detail_produk/{id}', [Produk_pembeli_controller::class, 'detail_produk'])->name('detail_produk');
 
 
 Route::group(['middleware' => 'auth'], function(){
-    Route::get('/input_produk', [InputProdukController::class, 'input_produk'])->name('input_produk');
-    Route::post('/simpan_input_produk', [InputProdukController::class, 'simpan_input_produk'])->name('simpan_input_produk');
+    Route::get('/input_produk', [Produk_penjual_controller::class, 'input_produk'])->name('input_produk');
+    Route::post('/simpan_input_produk', [Produk_penjual_controller::class, 'simpan_input_produk'])->name('simpan_input_produk');
 
 
-    Route::get('/report_produk', [InputProdukController::class, 'report_produk'])->name('report_produk');
+    Route::get('/report_produk', [Produk_penjual_controller::class, 'report_produk'])->name('report_produk');
     
-    Route::get('/edit_produk/{id}', [InputProdukController::class, 'edit_produk'])->name('edit_produk');
-    Route::post('/simpan_edit_produk/{id}', [InputProdukController::class, 'simpan_edit_produk'])->name('simpan_edit_produk');
+    Route::get('/edit_produk/{id}', [Produk_penjual_controller::class, 'edit_produk'])->name('edit_produk');
+    Route::post('/simpan_edit_produk/{id}', [Produk_penjual_controller::class, 'simpan_edit_produk'])->name('simpan_edit_produk');
     
-    Route::get('/hapus_produk/{id}', [InputProdukController::class, 'hapus_produk'])->name('hapus_produk');
+    Route::get('/hapus_produk/{id}', [Produk_penjual_controller::class, 'hapus_produk'])->name('hapus_produk');
     
-    Route::get('/pesanan', [InputProdukController::class, 'pesanan'])->name('pesanan');
+    Route::get('/pesanan', [Pesanan_penjual_controller::class, 'pesanan'])->name('pesanan');
     
-    Route::get('/pemesanan/{id}', [InputProdukController::class, 'pemesanan'])->name('pemesanan');
+    Route::get('/pemesanan/{id}', [Pesanan_penjual_controller::class, 'pemesanan'])->name('pemesanan');
     
-    Route::post('/pesan_produk/{id}', [InputProdukController::class, 'pesan_produk'])->name('pesan_produk');
+    Route::post('/pesan_produk/{id}', [Pemesanan_pembeli_controller::class, 'pesan_produk'])->name('pesan_produk');
     
-    Route::get('/keranjang', [InputProdukController::class, 'keranjang'])->name('keranjang');
+    Route::get('/keranjang', [Pemesanan_pembeli_controller::class, 'keranjang'])->name('keranjang');
 });

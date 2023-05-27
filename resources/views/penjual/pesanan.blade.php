@@ -45,7 +45,7 @@
                                     <td>{{ $row->nama_produk }}</td>
                                     <td>{{ $row->no_telp_pemesan }}</td>
                                     <td>{{ $row->jumlah }}</td>
-                                    <td>{{ $row->total_harga }}</td>
+                                    <td>{{ $row->sub_total }}</td>
                                     <td align="center">                                        
                                         <img class="img-fluid rounded shadow-sm"
                                         src="{{ asset('gambar/bukti_pembayaran/'.$row->bukti_pembayaran) }}"
