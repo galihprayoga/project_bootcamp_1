@@ -35,15 +35,17 @@ Route::group(['middleware' => 'auth'], function(){
 
 
     Route::get('/report_produk', [InputProdukController::class, 'report_produk'])->name('report_produk');
-
+    
     Route::get('/edit_produk/{id}', [InputProdukController::class, 'edit_produk'])->name('edit_produk');
     Route::post('/simpan_edit_produk/{id}', [InputProdukController::class, 'simpan_edit_produk'])->name('simpan_edit_produk');
-
+    
     Route::get('/hapus_produk/{id}', [InputProdukController::class, 'hapus_produk'])->name('hapus_produk');
-
+    
     Route::get('/pesanan', [InputProdukController::class, 'pesanan'])->name('pesanan');
-
+    
     Route::get('/pemesanan/{id}', [InputProdukController::class, 'pemesanan'])->name('pemesanan');
-
+    
     Route::post('/pesan_produk/{id}', [InputProdukController::class, 'pesan_produk'])->name('pesan_produk');
+    
+    Route::get('/keranjang', [InputProdukController::class, 'keranjang'])->name('keranjang');
 });

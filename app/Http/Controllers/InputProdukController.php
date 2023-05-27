@@ -7,6 +7,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\auth;
 use Illuminate\Support\Str;
 
 
@@ -375,6 +376,31 @@ class InputProdukController extends Controller
 
 
             return view('penjual.pesanan', $data);
+        } catch (Exception $e) {
+            return $e;
+        }
+    }
+
+    public function keranjang()
+    {
+        try {
+            $data_produk = DB::table('view_users_produk_pesanan')
+                    ->select(
+                        'view_users_produk_pesanan.nama_produk',
+                        'view_users_produk_pesanan.gambar_produk',
+                        'view_users_produk_pesanan.jumlah',
+                        'view_users_produk_pesanan.sub_total',
+                    )
+                    ->where('view_users_produk_pesanan.id', Auth::user()->id)
+                    ->get();
+
+
+            $data = [
+                'data_produk' => $data_produk
+            ];
+
+
+            return view('keranjang', $data);
         } catch (Exception $e) {
             return $e;
         }
