@@ -62,6 +62,14 @@
                         </div>
 
                         <div class="row mb-3">
+                            <label for="no_telp_pemesan" class="col-md-4 col-form-label text-md-end">{{ __('Nomor Telepon') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="no_telp_pemesan" type="text" class="form-control" name="no_telp_pemesan" value="{{ old('no_telp_pemesan') }}" required autocomplete="no_telp_pemesan">
+                            </div>
+                        </div>
+
+                        <!-- <div class="row mb-3">
                             <label for="role-user" class="col-md-4 col-form-label text-md-end">Role User</label>
 
 
@@ -72,7 +80,7 @@
                                     <option value="2">Pembeli</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
