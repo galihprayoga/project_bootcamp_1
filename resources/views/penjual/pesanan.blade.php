@@ -38,7 +38,7 @@
                             </thead>
                             <tbody>
                                 @php $no=1; @endphp
-                                @foreach($data_produk as $row)
+                                @foreach($data_pesanan as $row)
                                 <tr>
                                     <td>{{ $no++ }}</td>
                                     <td>{{ $row->name }}</td>

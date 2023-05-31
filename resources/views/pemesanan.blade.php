@@ -20,7 +20,7 @@
                     </div>
                     <form method="POST" action="{{ url('/do_tambah_keranjang/'.$id) }}" enctype="multipart/form-data">
                         @csrf
-                        @foreach($data_produk as $row)
+                        @foreach($data_pesanan as $row)
                         <input type="hidden" name="id" id="id" value="{{ $row->id }}">
                         <input type="hidden" name="id_user" id="id_user" value="{{ Auth::user()->id }}">
                         <div class="row mb-3">

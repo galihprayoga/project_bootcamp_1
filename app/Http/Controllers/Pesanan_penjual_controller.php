@@ -15,21 +15,21 @@ class Pesanan_penjual_controller extends Controller
     public function pesanan()
     {
         try {
-            $data_produk = DB::table('view_users_produk_pesanan')
+            $data_pesanan = DB::table('view_pesanan')
                     ->select(
-                        'view_users_produk_pesanan.name',
-                        'view_users_produk_pesanan.nama_produk',
-                        'view_users_produk_pesanan.no_telp_pemesan',
-                        'view_users_produk_pesanan.jumlah',
-                        'view_users_produk_pesanan.sub_total',
-                        'view_users_produk_pesanan.bukti_pembayaran',
-                        'view_users_produk_pesanan.alamat'                        
+                        'view_pesanan.name',
+                        'view_pesanan.nama_produk',
+                        'view_pesanan.no_telp_pemesan',
+                        'view_pesanan.jumlah',
+                        'view_pesanan.sub_total',
+                        'view_pesanan.bukti_pembayaran',
+                        'view_pesanan.alamat'                        
                     )
                     ->get();
 
 
             $data = [
-                'data_produk' => $data_produk
+                'data_pesanan' => $data_pesanan
             ];
 
 
@@ -43,7 +43,7 @@ class Pesanan_penjual_controller extends Controller
     {
         // mengambil data dari database tabel produk sesuai id pada parameter
         try {
-            $data_produk = DB::table('daftar_produk')
+            $data_pesanan = DB::table('daftar_produk')
                     ->select(
                         'daftar_produk.id',
                         'daftar_produk.nama_produk',
@@ -56,7 +56,7 @@ class Pesanan_penjual_controller extends Controller
 
             // membuat object untuk menyimpan data produk dan id
             $data = [
-                'data_produk' => $data_produk,
+                'data_pesanan' => $data_pesanan,
                 'id' => $id
             ];
 

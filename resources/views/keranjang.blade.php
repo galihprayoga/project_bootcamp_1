@@ -7,7 +7,7 @@
                 <div class="card-header">Keranjang</div>
 
                 @csrf
-                @foreach($data_produk as $row)
+                @foreach($data_pesanan as $row)
                 <div class="card-body">
                     <div class="card mb-3" style="max-width: 540px;">
                         <div class="row no-gutters">

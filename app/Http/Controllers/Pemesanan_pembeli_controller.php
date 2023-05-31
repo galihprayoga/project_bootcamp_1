@@ -45,7 +45,7 @@ class Pemesanan_pembeli_controller extends Controller
     public function keranjang()
     {
         try {
-            $data_produk = DB::table('view_pesanan')
+            $data_pesanan = DB::table('view_pesanan')
                     ->select(
                         'view_pesanan.nama_produk',
                         'view_pesanan.gambar_produk',
@@ -57,7 +57,7 @@ class Pemesanan_pembeli_controller extends Controller
                     ->get();
 
             $data = [
-                'data_produk' => $data_produk
+                'data_pesanan' => $data_pesanan
             ];
 
 
@@ -68,51 +68,51 @@ class Pemesanan_pembeli_controller extends Controller
     }
     
 
-    public function pesan_produk(Request $request, $id)
-    {
-        try {
-            $bukti_pembayaran = $request->file('bukti_pembayaran');
+    // public function pesan_produk(Request $request, $id)
+    // {
+    //     try {
+    //         $bukti_pembayaran = $request->file('bukti_pembayaran');
             
-            //ambil ekstensi gambar
-            $ext_bukti_pembayaran = $bukti_pembayaran->getClientOriginalExtension();
-            //ambil nama gambar
-            $nama_bukti_pembayaran = $bukti_pembayaran->getClientOriginalName();
-            //pindahkan gambar ke folder public/gambar/bukti_pembayaran
-            $bukti_pembayaran->move('gambar/bukti_pembayaran/', $nama_bukti_pembayaran);
+    //         //ambil ekstensi gambar
+    //         $ext_bukti_pembayaran = $bukti_pembayaran->getClientOriginalExtension();
+    //         //ambil nama gambar
+    //         $nama_bukti_pembayaran = $bukti_pembayaran->getClientOriginalName();
+    //         //pindahkan gambar ke folder public/gambar/bukti_pembayaran
+    //         $bukti_pembayaran->move('gambar/bukti_pembayaran/', $nama_bukti_pembayaran);
             
 
-            $data = [
-                'id_produk' => $request->id,
-                'id_user' => $request->id_user,
-                'bukti_pembayaran' => $nama_bukti_pembayaran,                
-                'no_telp_pemesan' => $request->no_telp_pemesan,
-                'jumlah' => $request->jumlah,
-                'sub_total' => Str::replace('.','',$request->sub_total),
-                'alamat' => $request->alamat,
-            ];
+    //         $data = [
+    //             'id_produk' => $request->id,
+    //             'id_user' => $request->id_user,
+    //             'bukti_pembayaran' => $nama_bukti_pembayaran,                
+    //             'no_telp_pemesan' => $request->no_telp_pemesan,
+    //             'jumlah' => $request->jumlah,
+    //             'sub_total' => Str::replace('.','',$request->sub_total),
+    //             'alamat' => $request->alamat,
+    //         ];
 
 
-            //Start Transaction
-            DB::beginTransaction();
-            $insert_data = DB::table('pesanan')->insert($data);
+    //         //Start Transaction
+    //         DB::beginTransaction();
+    //         $insert_data = DB::table('pesanan')->insert($data);
 
 
-            //Commit Transaction
-            DB::commit();
+    //         //Commit Transaction
+    //         DB::commit();
 
 
-            return redirect()->back()->with('message', 'Produk berhasil dipesan');
-        } catch (Exception $e) {
-            //rollback Transaction
-            DB::rollback();
-            return redirect()->back()->with('error', 'Pemesanan gagal, silahkan coba lagi!');
-        }
-    }
+    //         return redirect()->back()->with('message', 'Produk berhasil dipesan');
+    //     } catch (Exception $e) {
+    //         //rollback Transaction
+    //         DB::rollback();
+    //         return redirect()->back()->with('error', 'Pemesanan gagal, silahkan coba lagi!');
+    //     }
+    // }
     
     public function pembayaran()
     {
         try {
-            $data_produk = DB::table('pesanan')
+            $data_pesanan = DB::table('pesanan')
                     ->select(
                         'pesanan.id_pesanan',
                         'pesanan.bukti_pembayaran',
@@ -126,10 +126,9 @@ class Pemesanan_pembeli_controller extends Controller
                     ->where('pesanan.id_user', Auth::user()->id)
                     ->where('pesanan.status_pesanan', '=',1)
                     ->get();
-                    // dd($data_produk);
 
             $data = [
-                'data_produk' => $data_produk
+                'data_pesanan' => $data_pesanan
             ];
 
 

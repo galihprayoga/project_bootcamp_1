@@ -57,7 +57,7 @@
                             </div>
                         </div>
                         @csrf
-                        @foreach($data_produk as $row)
+                        @foreach($data_pesanan as $row)
                         @endforeach
                     </form>
                 </div>
