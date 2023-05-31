@@ -18,7 +18,7 @@
                             </div>
                         @endif
                     </div>
-                    <form method="POST" action="{{ url('/pesan_produk/'.$id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ url('/do_tambah_keranjang/'.$id) }}" enctype="multipart/form-data">
                         @csrf
                         @foreach($data_produk as $row)
                         <input type="hidden" name="id" id="id" value="{{ $row->id }}">
@@ -75,7 +75,7 @@
                         </div>
 
 
-                        <div class="row mb-3">
+                        <!-- <div class="row mb-3">
                             <label for="alamat" class="col-md-4 col-form-label text-md-end">Alamat Pengiriman</label>
 
 
@@ -92,17 +92,17 @@
                             <div class="col-md-6">
                                 <input id="no_telp_pemesan" class="form-control" name="no_telp_pemesan"></input>
                             </div>
-                        </div>
+                        </div> -->
 
 
-                        <div class="row mb-2">
+                        <!-- <div class="row mb-2">
                             <label for="bukti_pembayaran" class="col-md-4 col-form-label text-md-end">Bukti Pembayaran</label>
 
 
                             <div class="col-md-6">
                                 <input id="bukti_pembayaran" type="file" class="form-control" name="bukti_pembayaran" required>
                             </div>
-                        </div>
+                        </div> -->
 
 
                         <div class="row mb-3">

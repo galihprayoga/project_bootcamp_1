@@ -50,5 +50,10 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::post('/pesan_produk/{id}', [Pemesanan_pembeli_controller::class, 'pesan_produk'])->name('pesan_produk');
     
+    Route::get('/pembayaran', [Pemesanan_pembeli_controller::class, 'pembayaran'])->name('pembayaran');
+    Route::post('/simpan_pembayaran', [Pemesanan_pembeli_controller::class, 'simpan_pembayaran'])->name('simpan_pembayaran');
+    
+    Route::post('/do_tambah_keranjang/{id}', [Pemesanan_pembeli_controller::class, 'do_tambah_keranjang'])->name('do_tambah_keranjang');
+    
     Route::get('/keranjang', [Pemesanan_pembeli_controller::class, 'keranjang'])->name('keranjang');
 });

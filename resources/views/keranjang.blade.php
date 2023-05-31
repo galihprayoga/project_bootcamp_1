@@ -27,6 +27,7 @@
                 </div>
                 @endforeach
             </div>
+            <a href="{{ url('pembayaran') }}" class="btn btn-sm btn-success">Bayar</a>
         </div>
     </div>
 </div>
