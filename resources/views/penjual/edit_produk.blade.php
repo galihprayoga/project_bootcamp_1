@@ -2,6 +2,20 @@
 
 
 @section('content')
+<ul class="nav nav-pills bg-secondary justify-content-center mb-4 sticky-top">
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{{ url('pesanan') }}">Pesanan</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link active" href="{{ url('input_produk') }}">Input Produk</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{{ url('report_produk') }}">Daftar Produk</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="#">Profil</a>
+    </li>
+</ul>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

@@ -2,6 +2,20 @@
 
 
 @section('content')
+<ul class="nav nav-pills bg-secondary justify-content-center mb-4 sticky-top">
+    <li class="nav-item">
+        <a class="nav-link active" href="{{ url('pesanan') }}">Pesanan</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{{ url('input_produk') }}">Input Produk</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="{{ url('report_produk') }}">Daftar Produk</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-light" href="#">Profil</a>
+    </li>
+</ul>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
@@ -29,10 +43,11 @@
                                     <th>Nama Pemesan</th>
                                     <th>Nama Produk</th>
                                     <th>Nomor Telepon</th>
-                                    <th>Jumlah</th>
+                                    <th>Status Pesanan</th>
+                                    <!-- <th>Jumlah</th>
                                     <th>Total Harga</th>
                                     <th>Bukti Pembayaran</th>
-                                    <th>Alamat</th>
+                                    <th>Alamat</th> -->
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -44,16 +59,20 @@
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->nama_produk }}</td>
                                     <td>{{ $row->no_telp_pemesan }}</td>
-                                    <td>{{ $row->jumlah }}</td>
-                                    <td>{{ $row->sub_total }}</td>
-                                    <td align="center">                                        
-                                        <img class="img-fluid rounded shadow-sm"
-                                        src="{{ asset('gambar/bukti_pembayaran/'.$row->bukti_pembayaran) }}"
-                                        style="width: 90px; height:90px" alt="Bukti Pembayaran">
-                                    </td>
-                                    <td>{{ $row->alamat }}</td>
+                                    
+                                        @if($row->status_pesanan==1)
+                                        <td class="bg-warning">Menunggu Verifikasi</td>
+                                        @elseif($row->status_pesanan==2)
+                                        <td class="bg-info">Pembayaran Terverifikasi</td>
+                                        @elseif($row->status_pesanan==3)
+                                        <td class="bg-success">Produk Dikirim</td>
+                                        @else
+                                        <td class="bg-primary">Pesanan Selesai</td>
+                                        @endif
+                                    
+                                    
                                     <td align="center">
-                                        <a href="#" class="btn btn-sm btn-primary">Cetak Alamat</a>                                        
+                                        <a href="{{ url('detail_pesanan') }}" class="btn btn-sm btn-primary">Detail</a>                                        
                                     </td>
                                 </tr>
                                 @endforeach

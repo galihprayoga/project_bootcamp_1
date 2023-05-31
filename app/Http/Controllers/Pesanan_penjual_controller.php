@@ -20,10 +20,7 @@ class Pesanan_penjual_controller extends Controller
                         'view_pesanan.name',
                         'view_pesanan.nama_produk',
                         'view_pesanan.no_telp_pemesan',
-                        'view_pesanan.jumlah',
-                        'view_pesanan.sub_total',
-                        'view_pesanan.bukti_pembayaran',
-                        'view_pesanan.alamat'                        
+                        'view_pesanan.status_pesanan',                                                
                     )
                     ->get();
 
@@ -38,32 +35,59 @@ class Pesanan_penjual_controller extends Controller
             return $e;
         }
     }
-
-    public function pemesanan($id) // Parameter $id untuk mengambil data yang ingin di edit
+    
+    public function detail_pesanan()
     {
-        // mengambil data dari database tabel produk sesuai id pada parameter
         try {
-            $data_pesanan = DB::table('daftar_produk')
+            $data_pesanan = DB::table('view_pesanan')
                     ->select(
-                        'daftar_produk.id',
-                        'daftar_produk.nama_produk',
-                        'daftar_produk.gambar_produk',                        
-                        'daftar_produk.harga'
+                        'view_pesanan.name',
+                        'view_pesanan.nama_produk',
+                        'view_pesanan.no_telp_pemesan',
+                        'view_pesanan.jumlah',
+                        'view_pesanan.sub_total',
+                        'view_pesanan.bukti_pembayaran',
+                        'view_pesanan.alamat'                        
                     )
-                    ->where('daftar_produk.id', $id)
                     ->get();
 
 
-            // membuat object untuk menyimpan data produk dan id
             $data = [
-                'data_pesanan' => $data_pesanan,
-                'id' => $id
+                'data_pesanan' => $data_pesanan
             ];
 
-            // menampilkan halaman view edit_produk.blade.php dengan data dari object $data
-            return view('pemesanan', $data);
+
+            return view('penjual.detail_pesanan', $data);
         } catch (Exception $e) {
             return $e;
         }
     }
+
+    // public function pemesanan($id) // Parameter $id untuk mengambil data yang ingin di edit
+    // {
+    //     // mengambil data dari database tabel produk sesuai id pada parameter
+    //     try {
+    //         $data_pesanan = DB::table('daftar_produk')
+    //                 ->select(
+    //                     'daftar_produk.id',
+    //                     'daftar_produk.nama_produk',
+    //                     'daftar_produk.gambar_produk',                        
+    //                     'daftar_produk.harga'
+    //                 )
+    //                 ->where('daftar_produk.id', $id)
+    //                 ->get();
+
+
+    //         // membuat object untuk menyimpan data produk dan id
+    //         $data = [
+    //             'data_pesanan' => $data_pesanan,
+    //             'id' => $id
+    //         ];
+
+    //         // menampilkan halaman view edit_produk.blade.php dengan data dari object $data
+    //         return view('pemesanan', $data);
+    //     } catch (Exception $e) {
+    //         return $e;
+    //     }
+    // }
 }
