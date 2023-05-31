@@ -56,16 +56,22 @@
                                 </li>
                             @endif
                         @else
+                            @if(Auth::user()->role_id=='1')
+                                <a href="{{ route('pesanan') }}" class="btn btn-default"><i class="fa fa-tachometer"></i></a>
+                            @endif
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('keranjang') }}"><i class="fa fa-shopping-cart"></i></i></a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="fa fa-home"></i>{{ Auth::user()->name }}
+                                <i class="fa fa-user"></i>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <i class="fa fa-sign-out"></i>{{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
