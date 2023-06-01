@@ -18,7 +18,7 @@
                                 <div class="card-body">
                                     <h5 class="card-title">{{ $row->nama_produk }}</h5>
                                     <p class="card-text">Banyaknya: {{ $row->jumlah }}</p>
-                                    <h3 class="card-text">Rp. {{ format_rupiah($row->sub_total) }}</h3>
+                                    <h3 class="card-text">Rp. {{ number_format($row->sub_total,0,'','.') }}</h3>
                                     <a href="#" class="btn btn-sm btn-danger">Hapus</a>
                                 </div>
                             </div>
@@ -26,6 +26,7 @@
                     </div>
                 </div>
                 @endforeach
+                <label for="total">{{ $total }}</label>
             </div>
             <a href="{{ url('pembayaran') }}" class="btn btn-sm btn-success">Bayar</a>
         </div>

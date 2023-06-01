@@ -45,6 +45,9 @@ class Pemesanan_pembeli_controller extends Controller
     public function keranjang()
     {
         try {
+            $total = DB::table('detail_pesanan')->where('detail_pesanan.id_user', Auth::user()->id)
+            ->where('detail_pesanan.status_pesanan', '=',1)->sum('sub_total');
+
             $data_pesanan = DB::table('view_detail_pesanan')
                     ->select(
                         'view_detail_pesanan.nama_produk',
@@ -57,8 +60,10 @@ class Pemesanan_pembeli_controller extends Controller
                     ->get();
 
             $data = [
-                'data_pesanan' => $data_pesanan
+                'data_pesanan' => $data_pesanan,
+                'total' => $total
             ];
+            // dd($data);
 
 
             return view('keranjang', $data);
@@ -150,6 +155,9 @@ class Pemesanan_pembeli_controller extends Controller
             //pindahkan gambar ke folder public/gambar/bukti_pembayaran
             $bukti_pembayaran->move('gambar/bukti_pembayaran/', $nama_bukti_pembayaran);
                         
+            $total = DB::table('detail_pesanan')->where('detail_pesanan.id_user', Auth::user()->id)
+            ->where('detail_pesanan.status_pesanan', '=',1)->sum('sub_total');
+
             $data = [            
                 'bukti_pembayaran' => $nama_bukti_pembayaran,                                
                 'alamat' => $request->alamat,
@@ -160,7 +168,8 @@ class Pemesanan_pembeli_controller extends Controller
             $data2 = [
                 'invoice' => time(),
                 'id_user' => Auth::user()->id,
-                'status_pesanan' => 2
+                'status_pesanan' => 2,
+                'total' => $total
             ];
 
 

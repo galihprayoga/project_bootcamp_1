@@ -72,37 +72,7 @@
                             <div class="col-md-6">
                                 <input id="sub_total" type="number" class="form-control" name="sub_total">
                             </div>
-                        </div>
-
-
-                        <!-- <div class="row mb-3">
-                            <label for="alamat" class="col-md-4 col-form-label text-md-end">Alamat Pengiriman</label>
-
-
-                            <div class="col-md-6">
-                                <textarea id="alamat" class="form-control" name="alamat"></textarea>
-                            </div>
-                        </div>
-                        
-                        
-                        <div class="row mb-3">
-                            <label for="no_telp_pemesan" class="col-md-4 col-form-label text-md-end">Nomor Telepon</label>
-
-
-                            <div class="col-md-6">
-                                <input id="no_telp_pemesan" class="form-control" name="no_telp_pemesan"></input>
-                            </div>
-                        </div> -->
-
-
-                        <!-- <div class="row mb-2">
-                            <label for="bukti_pembayaran" class="col-md-4 col-form-label text-md-end">Bukti Pembayaran</label>
-
-
-                            <div class="col-md-6">
-                                <input id="bukti_pembayaran" type="file" class="form-control" name="bukti_pembayaran" required>
-                            </div>
-                        </div> -->
+                        </div>                        
 
 
                         <div class="row mb-3">
