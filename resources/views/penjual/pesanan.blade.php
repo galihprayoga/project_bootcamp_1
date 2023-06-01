@@ -40,9 +40,10 @@
                             <thead>
                                 <tr class="bg-primary text-white" align="center">
                                     <th>No</th>
+                                    <th>Invoice</th>
                                     <th>Nama Pemesan</th>
-                                    <th>Nama Produk</th>
                                     <th>Nomor Telepon</th>
+                                    <th>Total</th>
                                     <th>Status Pesanan</th>
                                     <!-- <th>Jumlah</th>
                                     <th>Total Harga</th>
@@ -56,9 +57,10 @@
                                 @foreach($data_pesanan as $row)
                                 <tr>
                                     <td>{{ $no++ }}</td>
+                                    <td>{{ $row->invoice }}</td>
                                     <td>{{ $row->name }}</td>
-                                    <td>{{ $row->nama_produk }}</td>
                                     <td>{{ $row->no_telp_pemesan }}</td>
+                                    <td>{{ $row->total }}</td>
                                     
                                         @if($row->status_pesanan==1)
                                         <td class="bg-warning">Menunggu Verifikasi</td>

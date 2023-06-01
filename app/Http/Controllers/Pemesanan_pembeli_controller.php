@@ -27,7 +27,7 @@ class Pemesanan_pembeli_controller extends Controller
 
             //Start Transaction
             DB::beginTransaction();
-            $insert_data = DB::table('pesanan')->insert($data);
+            $insert_data = DB::table('detail_pesanan')->insert($data);
 
 
             //Commit Transaction
@@ -45,15 +45,15 @@ class Pemesanan_pembeli_controller extends Controller
     public function keranjang()
     {
         try {
-            $data_pesanan = DB::table('view_pesanan')
+            $data_pesanan = DB::table('view_detail_pesanan')
                     ->select(
-                        'view_pesanan.nama_produk',
-                        'view_pesanan.gambar_produk',
-                        'view_pesanan.jumlah',
-                        'view_pesanan.sub_total',
+                        'view_detail_pesanan.nama_produk',
+                        'view_detail_pesanan.gambar_produk',
+                        'view_detail_pesanan.jumlah',
+                        'view_detail_pesanan.sub_total',
                     )
-                    ->where('view_pesanan.id', Auth::user()->id)
-                    ->where('view_pesanan.status_pesanan', '=',1)
+                    ->where('view_detail_pesanan.id', Auth::user()->id)
+                    ->where('view_detail_pesanan.status_pesanan', '=',1)
                     ->get();
 
             $data = [
@@ -112,19 +112,19 @@ class Pemesanan_pembeli_controller extends Controller
     public function pembayaran()
     {
         try {
-            $data_pesanan = DB::table('pesanan')
+            $data_pesanan = DB::table('detail_pesanan')
                     ->select(
-                        'pesanan.id_pesanan',
-                        'pesanan.bukti_pembayaran',
-                        'pesanan.jumlah',
-                        'pesanan.sub_total',
-                        'pesanan.id_produk',
-                        'pesanan.id_user',
-                        'pesanan.status_pesanan',
-                        'pesanan.alamat',
+                        'detail_pesanan.id_pesanan',
+                        'detail_pesanan.bukti_pembayaran',
+                        'detail_pesanan.jumlah',
+                        'detail_pesanan.sub_total',
+                        'detail_pesanan.id_produk',
+                        'detail_pesanan.id_user',
+                        'detail_pesanan.status_pesanan',
+                        'detail_pesanan.alamat',
                     )
-                    ->where('pesanan.id_user', Auth::user()->id)
-                    ->where('pesanan.status_pesanan', '=',1)
+                    ->where('detail_pesanan.id_user', Auth::user()->id)
+                    ->where('detail_pesanan.status_pesanan', '=',1)
                     ->get();
 
             $data = [
@@ -154,17 +154,24 @@ class Pemesanan_pembeli_controller extends Controller
                 'bukti_pembayaran' => $nama_bukti_pembayaran,                                
                 'alamat' => $request->alamat,
                 'status_pesanan' => 2,
+                'invoice' => time()
+            ];
+
+            $data2 = [
+                'invoice' => time(),
+                'id_user' => Auth::user()->id,
+                'status_pesanan' => 2
             ];
 
 
             //Start Transaction
             DB::beginTransaction();
-            $update_data = DB::table('pesanan')
-                ->where('pesanan.id_user', Auth::user()->id)
-                ->where('pesanan.status_pesanan', '=',1)              
+            $update_data = DB::table('detail_pesanan')
+                ->where('detail_pesanan.id_user', Auth::user()->id)
+                ->where('detail_pesanan.status_pesanan', '=',1)              
                 ->update($data);
-
-
+                
+            $insert_data = DB::table('pesanan')->insert($data2);
             //Commit Transaction
             DB::commit();
 
