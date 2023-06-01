@@ -37,24 +37,28 @@ class Pesanan_penjual_controller extends Controller
         }
     }
     
-    public function detail_pesanan()
+    public function detail_pesanan($id)
     {
         try {
-            $data_pesanan = DB::table('view_pesanan')
+            $data_pesanan = DB::table('view_detail_pesanan')
                     ->select(
-                        'view_pesanan.name',
-                        'view_pesanan.nama_produk',
-                        'view_pesanan.no_telp_pemesan',
-                        'view_pesanan.jumlah',
-                        'view_pesanan.sub_total',
-                        'view_pesanan.bukti_pembayaran',
-                        'view_pesanan.alamat'                        
+                        'view_detail_pesanan.invoice',
+                        'view_detail_pesanan.name',
+                        'view_detail_pesanan.nama_produk',
+                        'view_detail_pesanan.no_telp_pemesan',
+                        'view_detail_pesanan.jumlah',
+                        'view_detail_pesanan.sub_total',
+                        'view_detail_pesanan.bukti_pembayaran',
+                        'view_detail_pesanan.alamat',                  
+                        'view_detail_pesanan.status_pesanan'                        
                     )
+                    ->where('view_detail_pesanan.invoice', $id)
                     ->get();
 
 
             $data = [
-                'data_pesanan' => $data_pesanan
+                'data_pesanan' => $data_pesanan,
+                'id' => $id
             ];
 
 

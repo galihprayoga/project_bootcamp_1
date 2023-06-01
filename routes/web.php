@@ -46,7 +46,7 @@ Route::group(['middleware' => 'auth'], function(){
     
     Route::get('/pesanan', [Pesanan_penjual_controller::class, 'pesanan'])->name('pesanan');
     
-    Route::get('/detail_pesanan', [Pesanan_penjual_controller::class, 'detail_pesanan'])->name('detail_pesanan');
+    Route::get('/detail_pesanan/{id}', [Pesanan_penjual_controller::class, 'detail_pesanan'])->name('detail_pesanan');
     
     Route::get('/pemesanan/{id}', [Pesanan_penjual_controller::class, 'pemesanan'])->name('pemesanan');
     

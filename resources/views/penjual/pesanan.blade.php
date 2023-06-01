@@ -45,10 +45,6 @@
                                     <th>Nomor Telepon</th>
                                     <th>Total</th>
                                     <th>Status Pesanan</th>
-                                    <!-- <th>Jumlah</th>
-                                    <th>Total Harga</th>
-                                    <th>Bukti Pembayaran</th>
-                                    <th>Alamat</th> -->
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -60,7 +56,7 @@
                                     <td>{{ $row->invoice }}</td>
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->no_telp_pemesan }}</td>
-                                    <td>{{ $row->total }}</td>
+                                    <td>{{ format_rupiah($row->total) }}</td>
                                     
                                         @if($row->status_pesanan==1)
                                         <td class="bg-warning">Menunggu Verifikasi</td>
@@ -74,7 +70,7 @@
                                     
                                     
                                     <td align="center">
-                                        <a href="{{ url('detail_pesanan') }}" class="btn btn-sm btn-primary">Detail</a>                                        
+                                        <a href="{{ url('/detail_pesanan/'.$row->invoice) }}" class="btn btn-sm btn-primary">Detail</a>                                        
                                     </td>
                                 </tr>
                                 @endforeach
