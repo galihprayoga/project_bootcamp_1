@@ -58,4 +58,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/do_tambah_keranjang/{id}', [Pemesanan_pembeli_controller::class, 'do_tambah_keranjang'])->name('do_tambah_keranjang');
     
     Route::get('/keranjang', [Pemesanan_pembeli_controller::class, 'keranjang'])->name('keranjang');
+
+    Route::get('/cetak_pdf/{id}', [Pesanan_penjual_controller::class, 'cetak_pdf'])->name('cetak_pdf');
 });

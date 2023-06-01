@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use PDF;
 
 
 class Pesanan_penjual_controller extends Controller
@@ -66,6 +67,31 @@ class Pesanan_penjual_controller extends Controller
         } catch (Exception $e) {
             return $e;
         }
+    }
+
+    public function cetak_pdf($id)
+    {
+    	$data_pesanan = DB::table('view_detail_pesanan')
+                    ->select(
+                        'view_detail_pesanan.invoice',
+                        'view_detail_pesanan.name',
+                        'view_detail_pesanan.nama_produk',
+                        'view_detail_pesanan.no_telp_pemesan',
+                        'view_detail_pesanan.jumlah',
+                        'view_detail_pesanan.sub_total',
+                        'view_detail_pesanan.bukti_pembayaran',
+                        'view_detail_pesanan.alamat',                  
+                    )
+                    ->where('view_detail_pesanan.invoice', $id)
+                    ->get();
+
+        $data = [
+            'data_pesanan' => $data_pesanan,
+            'id' => $id
+        ];
+ 
+    	$pdf = PDF::loadview('penjual.pesanan_pdf',$data);
+    	return $pdf->stream('laporan-pegawai-pdf');
     }
 
     public function pemesanan($id) // Parameter $id untuk mengambil data yang ingin di edit
