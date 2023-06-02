@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\auth;
 use PDF;
 
 
@@ -71,7 +72,8 @@ class Pesanan_penjual_controller extends Controller
 
     public function cetak_pdf($id)
     {
-    	$data_pesanan = DB::table('view_detail_pesanan')
+        try {
+            $data_pesanan = DB::table('view_detail_pesanan')
                     ->select(
                         'view_detail_pesanan.invoice',
                         'view_detail_pesanan.name',
@@ -85,13 +87,37 @@ class Pesanan_penjual_controller extends Controller
                     ->where('view_detail_pesanan.invoice', $id)
                     ->get();
 
-        $data = [
-            'data_pesanan' => $data_pesanan,
-            'id' => $id
-        ];
- 
-    	$pdf = PDF::loadview('penjual.pesanan_pdf',$data);
-    	return $pdf->stream('laporan-pegawai-pdf');
+            $data = [
+                'data_pesanan' => $data_pesanan,
+                'id' => $id
+            ];      
+
+            $data2 = [
+                'status_pesanan' => 3,                
+            ];
+
+
+            //Start Transaction
+            DB::beginTransaction();
+            $update_data_detail_pesanan = DB::table('detail_pesanan')
+                ->where('detail_pesanan.invoice', $id)
+                ->update($data2);
+
+            $update_data_pesanan = DB::table('pesanan')
+                ->where('pesanan.invoice', $id)
+                ->update($data2);
+                
+            //Commit Transaction
+            DB::commit();
+
+
+            $pdf = PDF::loadview('penjual.pesanan_pdf',$data)->setPaper('a6');
+            return $pdf->stream('cetak-alamat-pdf');
+        } catch (Exception $e) {
+            //rollback Transaction
+            DB::rollback();
+            return redirect()->back()->with('error', 'Cetak alamat gagal, silahkan coba lagi!');
+        }
     }
 
     public function pemesanan($id) // Parameter $id untuk mengambil data yang ingin di edit

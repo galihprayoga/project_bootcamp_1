@@ -35,7 +35,7 @@
                             </div>
                         @endif
                     </div>
-                    <a href="{{ url('/cetak_pdf/'.$id) }}" class="btn btn-primary">Cetak Alamat</a>
+                    <a href="{{ url('/cetak_pdf/'.$id) }}" target="_blank" class="btn btn-primary">Cetak Alamat</a>
                     <div class="responsive">
                         <table class="table table-stripped table-bordered">
                             <thead>
