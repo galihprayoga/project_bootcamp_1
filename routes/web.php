@@ -7,6 +7,7 @@ use App\Http\Controllers\Produk_pembeli_controller;
 use App\Http\Controllers\Produk_penjual_controller;
 use App\Http\Controllers\Pesanan_penjual_controller;
 use App\Http\Controllers\Pemesanan_pembeli_controller;
+use App\Http\Controllers\Users_controller;
 
 
 /*
@@ -60,4 +61,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/keranjang', [Pemesanan_pembeli_controller::class, 'keranjang'])->name('keranjang');
 
     Route::get('/cetak_pdf/{id}', [Pesanan_penjual_controller::class, 'cetak_pdf'])->name('cetak_pdf');
+
+    Route::get('/daftar_user', [Users_controller::class, 'report_user'])->name('report_user');
+    Route::get('/edit_profil', [Users_controller::class, 'edit_profil'])->name('edit_profil');
+    Route::post('/simpan_edit_profil', [Users_controller::class, 'simpan_edit_profil'])->name('simpan_edit_profil');
+
 });
