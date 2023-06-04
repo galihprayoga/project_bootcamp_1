@@ -19,7 +19,7 @@
                                     <h5 class="card-title">{{ $row->nama_produk }}</h5>
                                     <p class="card-text">Banyaknya: {{ $row->jumlah }}</p>
                                     <h3 class="card-text">Rp. {{ number_format($row->sub_total,0,'','.') }}</h3>
-                                    <a href="#" class="btn btn-sm btn-danger">Hapus</a>
+                                    <a href="{{ url('/hapus_produk_keranjang/'.$row->id_pesanan) }}" class="btn btn-sm btn-danger">Hapus</a>
                                 </div>
                             </div>
                         </div>

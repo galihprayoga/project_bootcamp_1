@@ -50,6 +50,7 @@ class Pemesanan_pembeli_controller extends Controller
 
             $data_pesanan = DB::table('view_detail_pesanan')
                     ->select(
+                        'view_detail_pesanan.id_pesanan',
                         'view_detail_pesanan.nama_produk',
                         'view_detail_pesanan.gambar_produk',
                         'view_detail_pesanan.jumlah',
@@ -69,6 +70,26 @@ class Pemesanan_pembeli_controller extends Controller
             return view('keranjang', $data);
         } catch (Exception $e) {
             return $e;
+        }
+    }
+
+    public function hapus_produk_keranjang($id)
+    {
+        try {
+            //Start Transaction
+            DB::beginTransaction();
+            $hapus_produk = DB::table('detail_pesanan')->where('id_pesanan', $id)->delete();
+
+
+            //Commit Transaction
+            DB::commit();
+
+
+            return redirect()->back()->with('message', 'Data produk berhasil dihapus');
+        } catch (Exception $e) {
+            //rollback Transaction
+            DB::rollback();
+            return redirect()->back()->with('error', 'Data gagal dihapus, silahkan coba lagi!');
         }
     }
     
