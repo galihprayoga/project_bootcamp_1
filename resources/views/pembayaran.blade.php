@@ -2,10 +2,11 @@
 
 
 @section('content')
-<div class="container p-4">
+<div class="container p-4 d-flex flex-column min-vh-100">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
+                <div class="card-header">Pembayaran</div>
                 <div class="card-body">
                     <div class="row mb-2">
                         @if (\Session::has('message'))
@@ -20,15 +21,22 @@
                     </div>
                     <form method="POST" action="{{ url('simpan_pembayaran') }}" enctype="multipart/form-data">
                         
-                        
-                        <!-- <div class="row mb-3">
-                            <label for="sub_total" class="col-md-4 col-form-label text-md-end">Sub Total</label>
-                            
-                            
+                        <div class="row mb-3">
+                            <h2 id="show_pembayaran" align="center"></h2>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="pembayaran" class="col-md-4 col-form-label text-md-end">Pilih Pembayaran</label>
+
                             <div class="col-md-6">
-                                <input id="sub_total" type="number" class="form-control" name="sub_total">
+                                <select class="form-control" id="pembayaran">
+                                    <option value="">Pilih Bank</option>
+                                    <option value="1490509004">BCA</option>
+                                    <option value="64501016384533">BRI</option>
+                                    <option value="1380022087964">Mandiri</option>
+                                </select>
                             </div>
-                        </div> -->
+                        </div>
 
                         
                         <div class="row mb-3">
@@ -67,7 +75,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="page-footer font-small bg-primary text-white pt-4">
+<footer class="page-footer font-small bg-primary text-white pt-4 sticky-footer">
 
     <div class="container-fluid text-md-left">    
         <div class="row">
@@ -108,5 +116,14 @@
 
 </footer>
 <!-- Footer -->
+
+<script>    
+    $(document).ready(function () {  
+        $('#pembayaran').on('keyup change', function() {
+            $("#show_pembayaran").text("Nomor Rekening: "+$("option:selected", this).val());
+        })
+    });
+      
+  </script>
 
 @endsection

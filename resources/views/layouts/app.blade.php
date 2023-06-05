@@ -64,12 +64,12 @@
                             <li class="nav-item">
                                 <h5><a class="nav-link text-white" href="{{ route('keranjang') }}"><i class="fa fa-shopping-cart"></i></i></a></h5>
                             </li>
-                            <li class="nav-item dropdown">
-                                <h5><a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <h5><li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 <i class="fa fa-user text-white"></i>
-                                </a></h5>
+                                </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"  style="z-index:9999;">
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"  style="z-index:2;">
                                     <a class="dropdown-item" href="{{ url('edit_profil') }}">
                                         <i class="fa fa-pencil-square-o" style="z-index:2;"></i> {{ __('Edit') }}
                                     </a>
@@ -84,7 +84,7 @@
                                         @csrf
                                     </form>
                                 </div>
-                            </li>
+                            </li></h5>
                         @endguest
                     </ul>
                 </div>
