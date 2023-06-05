@@ -11,9 +11,6 @@
     </li>
     <li class="nav-item">
         <a class="nav-link active" href="{{ url('report_produk') }}">Daftar Produk</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link text-light" href="#">Profil</a>
     </li>    
 </ul>
 <div class="container">

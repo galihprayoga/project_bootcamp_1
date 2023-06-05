@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container p-4">
 <div class="row">
             <div class="col-md-7 card shadow mb-6">
                 @csrf

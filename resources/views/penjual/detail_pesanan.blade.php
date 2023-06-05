@@ -12,9 +12,6 @@
     <li class="nav-item">
         <a class="nav-link text-light" href="{{ url('report_produk') }}">Daftar Produk</a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link text-light" href="#">Profil</a>
-    </li>
 </ul>
 <div class="container">
     <div class="row justify-content-center">
@@ -35,7 +32,7 @@
                             </div>
                         @endif
                     </div>
-                    <a href="{{ url('/cetak_pdf/'.$id) }}" target="_blank" class="btn btn-primary">Cetak Alamat</a>
+                    <a href="{{ url('/cetak_pdf/'.$id) }}" target="_blank" class="btn btn-primary my-3">Cetak Alamat</a>
                     <div class="responsive">
                         <table class="table table-stripped table-bordered">
                             <thead>
@@ -58,7 +55,11 @@
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->nama_produk }}</td>
                                     <td>{{ $row->jumlah }}</td>
-                                    <td>{{ $row->bukti_pembayaran }}</td>
+                                    <td>
+                                        <img class="img-fluid rounded shadow-sm"
+                                                src="{{ asset('gambar/bukti_pembayaran/'.$row->bukti_pembayaran) }}"
+                                                style="width: 90px; height:90px" alt="Bukti Pembayaran">
+                                    </td>
                                     
                                         @if($row->status_pesanan==1)
                                         <td class="bg-warning">Menunggu Verifikasi</td>
