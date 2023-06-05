@@ -55,11 +55,11 @@
                                     <td>{{ $row->no_telp_pemesan }}</td>
                                     <td>{{ format_rupiah($row->total) }}</td>
                                     
-                                        @if($row->status_pesanan==1)
+                                        @if($row->status_pesanan==2)
                                         <td class="bg-warning">Menunggu Verifikasi</td>
-                                        @elseif($row->status_pesanan==2)
-                                        <td class="bg-info">Pembayaran Terverifikasi</td>
                                         @elseif($row->status_pesanan==3)
+                                        <td class="bg-info">Pembayaran Terverifikasi</td>
+                                        @elseif($row->status_pesanan==4)
                                         <td class="bg-success">Produk Dikirim</td>
                                         @else
                                         <td class="bg-primary">Pesanan Selesai</td>

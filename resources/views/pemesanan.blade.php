@@ -149,7 +149,8 @@
             var jumlah = $("#jumlah").val();
 
             var sub_total = parseInt(harga) * parseInt(jumlah);
-            $("#sub_total").val(number_with_dot(sub_total));
+            // $("#sub_total").val(number_with_dot(sub_total));
+            $("#sub_total").val(sub_total);
       })
     });
       

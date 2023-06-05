@@ -70,7 +70,7 @@ class Pesanan_penjual_controller extends Controller
         }
     }
 
-    public function cetak_pdf($id)
+    public function verifikasi_pembayaran($id)
     {
         try {
             $data_pesanan = DB::table('view_detail_pesanan')
@@ -94,6 +94,55 @@ class Pesanan_penjual_controller extends Controller
 
             $data2 = [
                 'status_pesanan' => 3,                
+            ];
+
+
+            //Start Transaction
+            DB::beginTransaction();
+            $update_data_detail_pesanan = DB::table('detail_pesanan')
+                ->where('detail_pesanan.invoice', $id)
+                ->update($data2);
+
+            $update_data_pesanan = DB::table('pesanan')
+                ->where('pesanan.invoice', $id)
+                ->update($data2);
+                
+            //Commit Transaction
+            DB::commit();
+
+            return redirect()->back()->with('message', 'Pembayaran berhasil di verifikasi!');
+
+        } catch (Exception $e) {
+            //rollback Transaction
+            DB::rollback();
+            return redirect()->back()->with('error', 'Cetak alamat gagal, silahkan coba lagi!');
+        }
+    }
+    
+    public function cetak_pdf($id)
+    {
+        try {
+            $data_pesanan = DB::table('view_detail_pesanan')
+                    ->select(
+                        'view_detail_pesanan.invoice',
+                        'view_detail_pesanan.name',
+                        'view_detail_pesanan.nama_produk',
+                        'view_detail_pesanan.no_telp_pemesan',
+                        'view_detail_pesanan.jumlah',
+                        'view_detail_pesanan.sub_total',
+                        'view_detail_pesanan.bukti_pembayaran',
+                        'view_detail_pesanan.alamat',                  
+                    )
+                    ->where('view_detail_pesanan.invoice', $id)
+                    ->get();
+
+            $data = [
+                'data_pesanan' => $data_pesanan,
+                'id' => $id
+            ];      
+
+            $data2 = [
+                'status_pesanan' => 4,                
             ];
 
 

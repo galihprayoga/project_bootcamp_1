@@ -7,7 +7,7 @@
                 <div class="card-header">Keranjang</div>
                 
                 @csrf
-                @forelse($data_pesanan as $row)
+                @foreach($data_pesanan as $row)
                     <div class="card-body">
                         <div class="card mb-3" style="max-width: 750px;">
                             <div class="row no-gutters">
@@ -25,15 +25,13 @@
                             </div>
                         </div>
                     </div>
-                    <h2 align="right" class="card-title px-3 pb-3">Total Harga: Rp. {{ number_format($total,0,'','.') }}</h2>
-                    <div class="row mb-3 mx-auto">
-                        <div class="col-md-8">
-                            <a href="{{ url('pembayaran') }}" class="btn btn-sm btn-success px-5 pt-2"><h3>Bayar</h3></a>
-                        </div>
+                @endforeach
+                <h2 align="right" class="card-title px-3 pb-3">Total Harga: Rp. {{ number_format($total,0,'','.') }}</h2>
+                <div class="row mb-3 mx-auto">
+                    <div class="col-md-8">
+                        <a href="{{ url('pembayaran') }}" class="btn btn-sm btn-success px-5 pt-2"><h3>Bayar</h3></a>
                     </div>
-                @empty
-                <h3 class="bg-danger text-white p-4 my-2">Tidak ada produk dalam keranjang Anda!</h3>
-                @endforelse
+                </div>
             </div>
         </div>
     </div>

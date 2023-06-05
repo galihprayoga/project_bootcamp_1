@@ -32,7 +32,7 @@
                             </div>
                         @endif
                     </div>
-                    <a href="{{ url('/cetak_pdf/'.$id) }}" target="_blank" class="btn btn-primary my-3">Cetak Alamat</a>
+                    <a href="{{ url('/cetak_pdf/'.$id) }}" target="_blank" class="btn btn-primary mb-3">Cetak Alamat</a>
                     <div class="responsive">
                         <table class="table table-stripped table-bordered">
                             <thead>
@@ -43,6 +43,7 @@
                                     <th>Nama Produk</th>                                    
                                     <th>Jumlah</th>
                                     <th>Bukti Pembayaran</th>
+                                    <th>Aksi</th>
                                     <th>Status Pesanan</th>
                                 </tr>
                             </thead>
@@ -57,16 +58,18 @@
                                     <td>{{ $row->jumlah }}</td>
                                     <td>
                                         <img id="bukti_pembayaran" class="img-fluid rounded shadow-sm"
-                                                src="{{ asset('gambar/bukti_pembayaran/'.$row->bukti_pembayaran) }}"
-                                                style="width: 90px; height:90px" alt="Bukti Pembayaran"
-                                                onmouseover="enlargeImg()" onmouseout="resetImg()">
+                                        src="{{ asset('gambar/bukti_pembayaran/'.$row->bukti_pembayaran) }}"
+                                        style="width: 90px; height:90px" alt="Bukti Pembayaran"
+                                        onmouseover="enlargeImg()" onmouseout="resetImg()">
                                     </td>
+                                    <td><button onclick="confirmationUpdateData('{{ url('/verifikasi_pembayaran/'.$id) }}')" 
+                                    class="btn btn-sm btn-info m-2">Verifikasi Pembayaran</button></td>
                                     
-                                        @if($row->status_pesanan==1)
+                                        @if($row->status_pesanan==2)
                                         <td class="bg-warning">Menunggu Verifikasi</td>
-                                        @elseif($row->status_pesanan==2)
-                                        <td class="bg-info">Pembayaran Terverifikasi</td>
                                         @elseif($row->status_pesanan==3)
+                                        <td class="bg-info">Pembayaran Terverifikasi</td>
+                                        @elseif($row->status_pesanan==4)
                                         <td class="bg-success">Produk Dikirim</td>
                                         @else
                                         <td class="bg-primary">Pesanan Selesai</td>
@@ -82,6 +85,7 @@
     </div>
 </div>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
     // Get the img object using its Id
     img = document.getElementById("bukti_pembayaran");
@@ -98,6 +102,24 @@
             img.style.transform = "scale(1)";
             img.style.transition = "transform 0.25s ease";
         }
+    
+        function confirmationUpdateData(url) {
+            Swal.fire({
+                title: 'Anda Yakin Untuk Memverifikasi Pembayaran Ini ?',
+                text: 'Data Tidak Dapat Dikembalikan!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Verifikasi!',
+                closeOnConfirm: false
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            })
+        }
 </script>
+
 
 @endsection

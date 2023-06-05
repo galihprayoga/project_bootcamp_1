@@ -40,7 +40,7 @@ class Pemesanan_pembeli_controller extends Controller
             return $e;
         }
     }
-    
+
     public function do_tambah_keranjang(Request $request, $id)
     {
         try {
@@ -92,10 +92,12 @@ class Pemesanan_pembeli_controller extends Controller
                 'data_pesanan' => $data_pesanan,
                 'total' => $total
             ];
-            // dd($data);
 
-
-            return view('keranjang', $data);
+            if (!empty($data_pesanan)) {
+                return view('keranjang_kosong');                
+            }else{
+                return view('keranjang', $data);
+            }
         } catch (Exception $e) {
             return $e;
         }
@@ -121,47 +123,6 @@ class Pemesanan_pembeli_controller extends Controller
         }
     }
     
-
-    // public function pesan_produk(Request $request, $id)
-    // {
-    //     try {
-    //         $bukti_pembayaran = $request->file('bukti_pembayaran');
-            
-    //         //ambil ekstensi gambar
-    //         $ext_bukti_pembayaran = $bukti_pembayaran->getClientOriginalExtension();
-    //         //ambil nama gambar
-    //         $nama_bukti_pembayaran = $bukti_pembayaran->getClientOriginalName();
-    //         //pindahkan gambar ke folder public/gambar/bukti_pembayaran
-    //         $bukti_pembayaran->move('gambar/bukti_pembayaran/', $nama_bukti_pembayaran);
-            
-
-    //         $data = [
-    //             'id_produk' => $request->id,
-    //             'id_user' => $request->id_user,
-    //             'bukti_pembayaran' => $nama_bukti_pembayaran,                
-    //             'no_telp_pemesan' => $request->no_telp_pemesan,
-    //             'jumlah' => $request->jumlah,
-    //             'sub_total' => Str::replace('.','',$request->sub_total),
-    //             'alamat' => $request->alamat,
-    //         ];
-
-
-    //         //Start Transaction
-    //         DB::beginTransaction();
-    //         $insert_data = DB::table('pesanan')->insert($data);
-
-
-    //         //Commit Transaction
-    //         DB::commit();
-
-
-    //         return redirect()->back()->with('message', 'Produk berhasil dipesan');
-    //     } catch (Exception $e) {
-    //         //rollback Transaction
-    //         DB::rollback();
-    //         return redirect()->back()->with('error', 'Pemesanan gagal, silahkan coba lagi!');
-    //     }
-    // }
     
     public function pembayaran()
     {
