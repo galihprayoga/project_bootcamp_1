@@ -64,10 +64,10 @@
                                     <td>{{ $row->nama_produk }}</td>
                                     <td>{{ $row->stok }}</td>
                                     <td>{{ $row->deskripsi_produk }}</td>
-                                    <td>{{ $row->harga }}</td>
+                                    <td>Rp. {{ format_rupiah($row->harga) }}</td>
                                     <td align="center">
-                                        <a href="{{ url('/edit_produk/'.$row->id) }}" class="btn btn-sm btn-primary">Edit</a>
-                                        <a href="{{ url('/hapus_produk/'.$row->id) }}" class="btn btn-sm btn-danger">Hapus</a>
+                                        <a href="{{ url('/edit_produk/'.$row->id) }}" class="btn btn-sm btn-info m-2">Edit</a>
+                                        <button onclick="confirmationHapusData('{{ url('/hapus_produk/'.$row->id) }}')" class="btn btn-sm btn-danger m-2">Hapus</button>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -79,4 +79,24 @@
         </div>
     </div>
 </div>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    function confirmationHapusData(url) {
+            Swal.fire({
+                title: 'Anda Yakin Untuk Menghapus Data Ini ?',
+                text: 'Data Tidak Dapat Dikembalikan!',
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#DD6B55',
+                confirmButtonText: 'Hapus!',
+                closeOnConfirm: false
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    window.location.href = url;
+                }
+            })
+        }
+</script>
 @endsection
