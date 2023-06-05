@@ -25,10 +25,10 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+        <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
+            <div class="container pt-2">
+                <a class="navbar-brand text-white" href="{{ url('/') }}">
+                    <h2><b>Trendy Footwear</b></h2>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -57,25 +57,27 @@
                             @endif
                         @else
                             @if(Auth::user()->role_id=='1')
-                                <a href="{{ route('pesanan') }}" class="btn btn-default"><i class="fa fa-tachometer"></i></a>
+                            <li class="nav-item">
+                                <h5><a href="{{ route('pesanan') }}" class="nav-link text-white"><i class="fa fa-tachometer"></i></a></h5>
+                            </li>
                             @endif
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('keranjang') }}"><i class="fa fa-shopping-cart"></i></i></a>
+                                <h5><a class="nav-link text-white" href="{{ route('keranjang') }}"><i class="fa fa-shopping-cart"></i></i></a></h5>
                             </li>
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                <i class="fa fa-user"></i>
-                                </a>
+                                <h5><a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <i class="fa fa-user text-white"></i>
+                                </a></h5>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"  style="z-index:9999;">
                                     <a class="dropdown-item" href="{{ url('edit_profil') }}">
-                                        <i class="fa fa-pencil-square-o" style="z-index:9999;"></i> {{ __('Edit') }}
+                                        <i class="fa fa-pencil-square-o" style="z-index:2;"></i> {{ __('Edit') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out" style="z-index:9999;"></i> {{ __('Logout') }}
+                                        <i class="fa fa-sign-out" style="z-index:2;"></i> {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
