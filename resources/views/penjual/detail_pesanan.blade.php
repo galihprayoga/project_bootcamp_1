@@ -56,9 +56,10 @@
                                     <td>{{ $row->nama_produk }}</td>
                                     <td>{{ $row->jumlah }}</td>
                                     <td>
-                                        <img class="img-fluid rounded shadow-sm"
+                                        <img id="bukti_pembayaran" class="img-fluid rounded shadow-sm"
                                                 src="{{ asset('gambar/bukti_pembayaran/'.$row->bukti_pembayaran) }}"
-                                                style="width: 90px; height:90px" alt="Bukti Pembayaran">
+                                                style="width: 90px; height:90px" alt="Bukti Pembayaran"
+                                                onmouseover="enlargeImg()" onmouseout="resetImg()">
                                     </td>
                                     
                                         @if($row->status_pesanan==1)
@@ -80,4 +81,23 @@
         </div>
     </div>
 </div>
+
+<script>
+    // Get the img object using its Id
+    img = document.getElementById("bukti_pembayaran");
+        // Function to increase image size
+        function enlargeImg() {
+            // Set image size to 6 times original
+            img.style.transform = "scale(6)";
+            // Animation effect
+            img.style.transition = "transform 0.25s ease";
+        }
+        // Function to reset image size
+        function resetImg() {
+            // Set image size to original
+            img.style.transform = "scale(1)";
+            img.style.transition = "transform 0.25s ease";
+        }
+</script>
+
 @endsection
