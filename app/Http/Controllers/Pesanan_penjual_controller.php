@@ -161,7 +161,7 @@ class Pesanan_penjual_controller extends Controller
 
 
             $pdf = PDF::loadview('penjual.pesanan_pdf',$data)->setPaper('a6');
-            return $pdf->stream('cetak-alamat-pdf');
+            return $pdf->stream('cetak-alamat-pdf');            
         } catch (Exception $e) {
             //rollback Transaction
             DB::rollback();

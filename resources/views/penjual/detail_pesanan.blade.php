@@ -62,9 +62,12 @@
                                         style="width: 90px; height:90px" alt="Bukti Pembayaran"
                                         onmouseover="enlargeImg()" onmouseout="resetImg()">
                                     </td>
+                                    @if($row->status_pesanan==2)
                                     <td><button onclick="confirmationUpdateData('{{ url('/verifikasi_pembayaran/'.$id) }}')" 
                                     class="btn btn-sm btn-info m-2">Verifikasi Pembayaran</button></td>
-                                    
+                                    @else
+                                    <td>Pembayaran Telah Diverifikasi</td>
+                                    @endif
                                         @if($row->status_pesanan==2)
                                         <td class="bg-warning">Menunggu Verifikasi</td>
                                         @elseif($row->status_pesanan==3)
