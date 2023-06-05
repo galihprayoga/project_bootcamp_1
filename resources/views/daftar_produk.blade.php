@@ -4,39 +4,35 @@
 <div class="container">
     <div class="row">
         <div class="col-9 mx-auto py-4">
-            <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+            <div id="carouselExampleIndicators" class="carousel slide" data-bs-interval="false">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://dummyimage.com/16:9x1080/" class="d-block w-100" alt="...">
+                        <img src="gambar/assets/banner1.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://dummyimage.com/16:9x1080/" class="d-block w-100" alt="...">
+                        <img src="gambar/assets/banner2.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="https://dummyimage.com/16:9x1080/" class="d-block w-100" alt="...">
+                        <img src="gambar/assets/banner3.jpg" class="d-block w-100" alt="...">
                     </div>
                 </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </button>
             </div>
+            
         </div>
     </div>
-
-    <!-- <div class="row">
-        <div class="col text-center">
-            <img src="https://beforeigosolutions.com/wp-content/uploads/2021/12/dummy-profile-pic-300x300-1.png" alt="" width="100">
-        </div>
-    </div> -->
-
-    <!-- <div class="row">
-        <div class="col text-center">
-            <i class="fas fa-store"></i>
-        </div>
-        <div class="col text-center">
-            <i class="fas fa-list"></i>
-        </div>
-        <div class="col text-center">
-            <i class="fas fa-star"></i>
-        </div>
-    </div> -->
 
     <div class="row">
         @foreach($data_produk as $row)
@@ -45,7 +41,7 @@
                     <img src="{{ asset('gambar/gambar_produk/'.$row->gambar_produk) }}" class="card-img-top" alt="">
                     <div class="card-body">
                         <h5 class="card-title">{{ $row->nama_produk }}</h5>
-                        <p class="card-text">{{ format_rupiah($row->harga) }}</p>
+                        <p class="card-text">Rp. {{ format_rupiah($row->harga) }}</p>
                         <a href="{{ url('/detail_produk/'.$row->id) }}" class="btn btn-primary">Detail</a>
                     </div>
                 </div>

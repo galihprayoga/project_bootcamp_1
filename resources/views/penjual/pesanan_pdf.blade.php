@@ -31,7 +31,7 @@
 
 		<p>Pengirim : Trendy Footwear
 			<br>Nomor Telepon : 081229343031
-			<br>Alamat : Jl. Jendral Sudirman, No. 45, Wonogiri
+			<br>Alamat : Jl. Sidoharjo-Girimarto, Girimarto, Wonogiri
 		</p>
 		
 		<p>Penerima : {{ $data_pesanan[0]->name }}

@@ -53,7 +53,7 @@
                                     <td>{{ $row->invoice }}</td>
                                     <td>{{ $row->name }}</td>
                                     <td>{{ $row->no_telp_pemesan }}</td>
-                                    <td>{{ format_rupiah($row->total) }}</td>
+                                    <td>Rp. {{ format_rupiah($row->total) }}</td>
                                     
                                         @if($row->status_pesanan==2)
                                         <td class="bg-warning">Menunggu Verifikasi</td>

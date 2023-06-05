@@ -41,10 +41,10 @@
                     <h1 class="display-5 text-uppercase mb-4">{{ $row->nama_produk }} </h1>
                     </p>
                     <p>
-                    <h5 class="text-uppercase mb-3 text-body">{{ $row->deskripsi_produk }}</h5>
+                    <h5 class="text-uppercase mb-3 text-body">{!! nl2br($row->deskripsi_produk) !!}</h5>
                     </p>
                     <p>
-                    <h2><span class="text-primary">{{ format_rupiah($row->harga) }}</span></h2>
+                    <h2><span class="text-primary">Rp. {{ format_rupiah($row->harga) }}</span></h2>
                     <a href="{{ url('/pemesanan/'.$row->id) }}" class="btn btn-primary">Pesan</a>
                     </p>
                 </div>

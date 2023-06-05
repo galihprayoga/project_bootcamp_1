@@ -26,7 +26,7 @@
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-primary shadow-sm">
-            <div class="container pt-2">
+            <div class="container-fluid pt-2">
                 <a class="navbar-brand text-white" href="{{ url('/') }}">
                     <h2><b>Trendy Footwear</b></h2>
                 </a>
