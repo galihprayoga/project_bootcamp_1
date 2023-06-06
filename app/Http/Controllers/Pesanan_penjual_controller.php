@@ -138,6 +138,7 @@ class Pesanan_penjual_controller extends Controller
 
             $data = [
                 'data_pesanan' => $data_pesanan,
+                'status_pesanan' => 4,
                 'id' => $id
             ];      
 

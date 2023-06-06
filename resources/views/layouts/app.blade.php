@@ -73,6 +73,10 @@
                                     <a class="dropdown-item" href="{{ url('edit_profil') }}">
                                         <i class="fa fa-pencil-square-o" style="z-index:2;"></i> {{ __('Edit') }}
                                     </a>
+                                    
+                                    <a class="dropdown-item" href="{{ url('history_pembelian') }}">
+                                        <i class="fa fa-history" style="z-index:2;"></i> {{ __('History Pembelian') }}
+                                    </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

@@ -83,6 +83,7 @@ class Pemesanan_pembeli_controller extends Controller
                         'view_detail_pesanan.gambar_produk',
                         'view_detail_pesanan.jumlah',
                         'view_detail_pesanan.sub_total',
+                        'view_detail_pesanan.status_pesanan',
                     )
                     ->where('view_detail_pesanan.id', Auth::user()->id)
                     ->where('view_detail_pesanan.status_pesanan', '=',1)
@@ -90,14 +91,11 @@ class Pemesanan_pembeli_controller extends Controller
 
             $data = [
                 'data_pesanan' => $data_pesanan,
-                'total' => $total
+                'total' => $total,                
             ];
 
-            if (!empty($data_pesanan)) {
-                return view('keranjang_kosong');                
-            }else{
-                return view('keranjang', $data);
-            }
+            return view('keranjang', $data);
+            
         } catch (Exception $e) {
             return $e;
         }
@@ -195,11 +193,43 @@ class Pemesanan_pembeli_controller extends Controller
             DB::commit();
 
 
-            return redirect(route('keranjang'));
+            return redirect(route('daftar_produk'));
         } catch (Exception $e) {
             //rollback Transaction
             DB::rollback();
             return redirect()->back()->with('error', 'Pembayaran gagal, silahkan coba lagi!');
+        }
+    }
+
+    public function history_pembelian()
+    {
+        try {
+            $total = DB::table('detail_pesanan')->where('detail_pesanan.id_user', Auth::user()->id)
+            ->where('detail_pesanan.status_pesanan', '=',1)->sum('sub_total');
+
+            $data_pesanan = DB::table('view_detail_pesanan')
+                    ->select(
+                        'view_detail_pesanan.id_pesanan',
+                        'view_detail_pesanan.nama_produk',
+                        'view_detail_pesanan.gambar_produk',
+                        'view_detail_pesanan.jumlah',
+                        'view_detail_pesanan.sub_total',
+                        'view_detail_pesanan.status_pesanan',
+                        'view_detail_pesanan.invoice',
+                    )
+                    ->where('view_detail_pesanan.id', Auth::user()->id) 
+                    ->where('view_detail_pesanan.status_pesanan', '>',1)                   
+                    ->get();
+
+            $data = [
+                'data_pesanan' => $data_pesanan,
+                'total' => $total,                
+            ];
+
+            return view('history_pembelian', $data);
+            
+        } catch (Exception $e) {
+            return $e;
         }
     }
 }

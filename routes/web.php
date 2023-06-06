@@ -67,4 +67,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/edit_profil', [Users_controller::class, 'edit_profil'])->name('edit_profil');
     Route::post('/simpan_edit_profil', [Users_controller::class, 'simpan_edit_profil'])->name('simpan_edit_profil');
 
+    Route::get('/history_pembelian', [Pemesanan_pembeli_controller::class, 'history_pembelian'])->name('history_pembelian');
+
 });
