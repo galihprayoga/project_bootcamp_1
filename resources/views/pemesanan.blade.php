@@ -60,7 +60,7 @@
 
 
                             <div class="col-md-6">
-                                <input id="harga" type="number" class="form-control" name="harga" value="{{ format_rupiah($row->harga) }}">
+                                <input id="harga" type="number" class="form-control" name="harga" value="{{ $row->harga }}">
                             </div>
                         </div>
                         

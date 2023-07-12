@@ -170,11 +170,11 @@ class Pemesanan_pembeli_controller extends Controller
                 'bukti_pembayaran' => $nama_bukti_pembayaran,                                
                 'alamat' => $request->alamat,
                 'status_pesanan' => 2,
-                'invoice' => time()
+                'invoice' => time(). Auth::user()->id. $request->nama_produk
             ];
 
             $data2 = [
-                'invoice' => time(),
+                'invoice' => time(). Auth::user()->id,
                 'id_user' => Auth::user()->id,
                 'status_pesanan' => 2,
                 'total' => $total

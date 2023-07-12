@@ -69,19 +69,19 @@
                                 <i class="fa fa-user text-white"></i>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"  style="z-index:2;">
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown"  style="z-index:9999;">
                                     <a class="dropdown-item" href="{{ url('edit_profil') }}">
-                                        <i class="fa fa-pencil-square-o" style="z-index:2;"></i> {{ __('Edit') }}
+                                        <i class="fa fa-pencil-square-o" style="z-index:9999;"></i> {{ __('Edit') }}
                                     </a>
                                     
                                     <a class="dropdown-item" href="{{ url('history_pembelian') }}">
-                                        <i class="fa fa-history" style="z-index:2;"></i> {{ __('History Pembelian') }}
+                                        <i class="fa fa-history" style="z-index:9999;"></i> {{ __('History Pembelian') }}
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out" style="z-index:2;"></i> {{ __('Logout') }}
+                                        <i class="fa fa-sign-out" style="z-index:9999;"></i> {{ __('Logout') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
